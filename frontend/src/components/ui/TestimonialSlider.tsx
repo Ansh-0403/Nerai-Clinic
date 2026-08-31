@@ -18,7 +18,7 @@ const reviewsData: Review[] = [
   {
     id: '2',
     name: 'Babita Mishra',
-    text: '“I visited Dr. Pooja with my daughter and discussed my slightly crooked teeth. She explained the option of aligners and guided me through the treatment process. I underwent the treatment, which included a root canal and capping, and my overall experience was excellent.\n\nDr. Pooja treated me with great care, gentleness, and patience throughout the entire process. She is extremely friendly and always greets me warmly, asking, \\"How are you, Aunty?\\" Her kind and caring nature made me feel very comfortable and confident.\n\nI would highly recommend everyone to meet Dr. Pooja at least once. Once you meet her and experience her approach, you will naturally feel confident about getting your dental treatment done by her.”',
+    text: '“I visited Dr. Pooja with my daughter and discussed my slightly crooked teeth. She explained the option of aligners and guided me through the treatment process. I underwent the treatment, which included a root canal and capping, and my overall experience was excellent.\n\nDr. Pooja treated me with great care, gentleness, and patience throughout the entire process. She is extremely friendly and always greets me warmly, asking, \'How are you, Aunty?\' Her kind and caring nature made me feel very comfortable and confident.\n\nI would highly recommend everyone to meet Dr. Pooja at least once. Once you meet her and experience her approach, you will naturally feel confident about getting your dental treatment done by her.”',
     rating: 5,
   },
   {
