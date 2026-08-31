@@ -115,17 +115,17 @@ export default function Home() {
           </div>
 
           {/* Portrait Image */}
-          <div className="lg:col-span-5 relative flex justify-center">
+          <div className="lg:col-span-5 relative flex flex-col items-center">
             <div className="border-2 border-tertiary p-2 bg-surface rounded-full shadow-lg">
               <img 
                 src="/Dr_pooja.jpeg" 
                 alt="Dr. Pooja Desai" 
-                className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-cover rounded-full"
+                className="w-[280px] h-[280px] md:w-[400px] md:h-[400px] object-cover rounded-full"
               />
             </div>
-            <div className="absolute -bottom-2 -left-4 bg-primary text-tertiary p-5 border border-tertiary/40 hidden md:block rounded-xl shadow-xl">
-              <p className="font-serif text-lg leading-none mb-1">Dr. Pooja Desai</p>
-              <p className="font-sans text-[9px] uppercase tracking-widest text-surface-container-highest">
+            <div className="mt-4 md:mt-0 md:absolute md:-bottom-2 md:-left-4 bg-primary text-tertiary p-4 md:p-5 border border-tertiary/40 rounded-xl shadow-xl text-center md:text-left w-fit max-w-[90%] z-10">
+              <p className="font-serif text-base md:text-lg leading-none mb-1.5 md:mb-1">Dr. Pooja Desai</p>
+              <p className="font-sans text-[10px] md:text-[9px] uppercase tracking-widest text-surface-container-highest">
                 MDS Orthodontics & Dentofacial Orthopaedics
               </p>
             </div>
