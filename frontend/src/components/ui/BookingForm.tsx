@@ -20,7 +20,7 @@ export const BookingForm: React.FC = () => {
     name: '',
     phone: '',
     date: getTodayStr(), // Default to today's date
-    timeSlot: '09:30 AM - 10:30 AM',
+    timeSlot: '10:00 AM - 11:00 AM',
     treatment: 'Consultation',
     patientStatus: 'new' as 'new' | 'existing',
     location: 'Ahmedabad Studio' as 'Ahmedabad Studio' | 'Vadodara Studio'
@@ -34,14 +34,13 @@ export const BookingForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const timeSlots = [
-    "09:30 AM - 10:30 AM",
-    "10:30 AM - 11:30 AM",
-    "11:30 AM - 12:30 PM",
-    "03:30 PM - 04:30 PM",
-    "04:30 PM - 05:30 PM",
-    "05:30 PM - 06:30 PM",
-    "06:30 PM - 07:30 PM",
-    "07:30 PM - 08:00 PM"
+    "10:00 AM - 11:00 AM",
+    "11:00 AM - 12:00 PM",
+    "12:00 PM - 01:00 PM",
+    "04:00 PM - 05:00 PM",
+    "05:00 PM - 06:00 PM",
+    "06:00 PM - 07:00 PM",
+    "07:00 PM - 08:00 PM"
   ];
 
   // Check Thursday logic client-side

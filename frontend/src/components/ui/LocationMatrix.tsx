@@ -18,8 +18,8 @@ const studiosData: Studio[] = [
     id: 'ahmedabad',
     name: 'Ahmedabad Clinic',
     address: 'FF-12, Riviera Arcade, Ground Floor, Prahlad Nagar Rd, opp. AMC Parking, Prahlad Nagar, Ahmedabad, Gujarat 380015',
-    days: 'All days except Thursday',
-    hours: '9:30 AM – 1:00 PM, 3:30 PM – 8:00 PM',
+    days: 'Monday to Saturday',
+    hours: 'Mon – Sat: 10:00 AM – 1:00 PM, 4:00 PM – 8:00 PM | Sun: On Prior Appointments Only',
     phone: '+91 82005 27699',
     imageUrl: '/images/studios/ahmedabad/ahmedabad-1.jpg',
     mapEmbedUrl: 'https://maps.google.com/maps?q=NERAI+Orthodontic+and+Dental+Studio,+Riviera+Arcade,+Ahmedabad&t=&z=15&ie=UTF8&iwloc=&output=embed',
@@ -29,8 +29,8 @@ const studiosData: Studio[] = [
     id: 'baroda',
     name: 'Vadodara Clinic',
     address: '308-310, V3 Landmark, Beside KIA Showroom, Narayanwadi, Atladara, Vadodara, Gujarat 390012',
-    days: 'Thursday Only',
-    hours: '9:30 AM – 1:00 PM, 3:30 PM – 8:00 PM',
+    days: 'Monday to Saturday',
+    hours: 'Mon – Sat: 10:00 AM – 1:00 PM, 4:00 PM – 8:00 PM | Sun: On Prior Appointments Only',
     phone: '+91 82005 27699',
     imageUrl: '/images/studios/vadodara/vadodara-3.jpg',
     mapEmbedUrl: 'https://maps.google.com/maps?q=Dr.+Pooja%27s+Braces+centre,+V3+Landmark,+308-310,+beside+KIA+showroom,+Narayanwadi,+Atladara,+Vadodara,+Gujarat+390012&t=&z=16&ie=UTF8&iwloc=&output=embed',
@@ -104,11 +104,12 @@ export const LocationMatrix: React.FC = () => {
                   </p>
                 </div>
                 
-                <div className="flex items-center gap-3">
-                  <Clock size={16} className="text-primary flex-shrink-0" />
-                  <p className="font-sans text-xs md:text-sm text-on-surface-variant leading-none font-light">
-                    {studio.hours}
-                  </p>
+                <div className="flex items-start gap-3">
+                  <Clock size={16} className="text-primary flex-shrink-0 mt-0.5" />
+                  <div className="font-sans text-xs md:text-sm text-on-surface-variant font-light space-y-1">
+                    <p><strong className="font-semibold text-on-surface">Mon – Sat:</strong> 10:00 AM – 1:00 PM & 4:00 PM – 8:00 PM</p>
+                    <p><strong className="font-semibold text-on-surface">Sunday:</strong> On prior appointments only</p>
+                  </div>
                 </div>
               </div>
 
