@@ -98,9 +98,6 @@ export default function Home() {
         <FadeIn className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           {/* Narrative */}
           <div className="lg:col-span-7 space-y-8">
-            <span className="font-sans text-xs font-bold text-primary tracking-widest uppercase block">
-              Est. Philosophy
-            </span>
             <h2 className="font-serif text-3xl md:text-[44px] text-on-surface leading-tight font-light">
               About Nerai
             </h2>
@@ -367,7 +364,7 @@ export default function Home() {
                     onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
                     className="font-sans text-xs text-on-surface-variant hover:text-primary font-light"
                   >
-                    Est. Philosophy
+                    About Nerai
                   </button>
                 </li>
                 <li>
