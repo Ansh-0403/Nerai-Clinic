@@ -120,13 +120,20 @@ export const StudioShowcase: React.FC = () => {
   useEffect(() => {
     if (isLightboxOpen) {
       document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setIsLightboxOpen(false);
+        if (e.key === 'ArrowRight') handleNextImage();
+        if (e.key === 'ArrowLeft') handlePrevImage();
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     } else {
       document.body.style.overflow = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isLightboxOpen]);
+  }, [isLightboxOpen, activeStudioId]);
 
   const activeStudio = studiosData.find(s => s.id === activeStudioId) || studiosData[0];
   const activeImage = activeStudio.images[activeImageIndex] || activeStudio.images[0];
@@ -294,24 +301,63 @@ export const StudioShowcase: React.FC = () => {
       {/* Lightbox Modal */}
       {isLightboxOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md select-none"
           data-lenis-prevent
           onClick={() => setIsLightboxOpen(false)}
         >
-          <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setIsLightboxOpen(false)}
-              className="absolute -top-12 right-0 text-white hover:text-tertiary p-2 rounded-full transition-colors"
-            >
-              <X size={28} />
-            </button>
+          {/* Close Button */}
+          <button
+            onClick={() => setIsLightboxOpen(false)}
+            className="absolute top-4 right-4 md:top-6 md:right-6 z-50 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-all duration-200 cursor-pointer"
+            aria-label="Close zoomed view"
+          >
+            <X size={24} />
+          </button>
 
+          {/* Previous Button */}
+          {activeStudio.images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrevImage();
+              }}
+              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-50 text-white/90 hover:text-white bg-black/50 hover:bg-primary/90 border border-white/20 p-3 md:p-3.5 rounded-full transition-all duration-200 shadow-xl cursor-pointer hover:scale-105"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          )}
+
+          {/* Centered Image Container */}
+          <div 
+            className="relative max-w-5xl w-full max-h-[85vh] flex flex-col items-center justify-center px-4" 
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={activeImage.url}
               alt={activeImage.caption}
-              className="max-h-[85vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+              className="max-h-[80vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl"
             />
+            {activeImage.caption && (
+              <p className="font-sans text-xs md:text-sm text-white/80 mt-4 text-center tracking-wide font-light">
+                {activeImage.caption} ({activeImageIndex + 1} / {activeStudio.images.length})
+              </p>
+            )}
           </div>
+
+          {/* Next Button */}
+          {activeStudio.images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNextImage();
+              }}
+              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 text-white/90 hover:text-white bg-black/50 hover:bg-primary/90 border border-white/20 p-3 md:p-3.5 rounded-full transition-all duration-200 shadow-xl cursor-pointer hover:scale-105"
+              aria-label="Next image"
+            >
+              <ChevronRight size={24} />
+            </button>
+          )}
         </div>
       )}
     </div>
