@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { ChevronDown, Menu, X, Plane } from 'lucide-react';
 import { treatmentsData } from '../../data/treatments';
 
 interface HeaderProps {
@@ -7,6 +8,8 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onSelectTreatment }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,6 +36,16 @@ export const Header: React.FC<HeaderProps> = ({ onSelectTreatment }) => {
   const handleScrollTo = (id: string) => {
     setIsMobileMenuOpen(false);
     setIsMegaMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(id) || (id === 'contact' ? document.getElementById('booking') : null);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return;
+    }
     const element = document.getElementById(id) || (id === 'contact' ? document.getElementById('booking') : null);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -42,6 +55,13 @@ export const Header: React.FC<HeaderProps> = ({ onSelectTreatment }) => {
   const handleTreatmentClick = (id: string) => {
     setIsMegaMenuOpen(false);
     setIsMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        onSelectTreatment(id);
+      }, 150);
+      return;
+    }
     onSelectTreatment(id);
   };
 
@@ -56,17 +76,24 @@ export const Header: React.FC<HeaderProps> = ({ onSelectTreatment }) => {
           {/* Brand Logo */}
           <a 
             href="#" 
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            onClick={(e) => { 
+              e.preventDefault(); 
+              if (location.pathname !== '/') {
+                navigate('/');
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
             className="flex items-center hover:opacity-90 transition-opacity duration-200 shrink-0"
           >
             <img src="/images/logo.png" alt="Nerai Dental Studio" className="h-8 md:h-10 w-auto" />
           </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 lg:space-x-7">
+        <nav className="hidden md:flex items-center space-x-5 lg:space-x-6">
           <button 
             onClick={() => handleScrollTo('about')}
-            className="font-sans text-[13.5px] lg:text-[14px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
+            className="font-sans text-[13px] lg:text-[13.5px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
           >
             About Us
           </button>
@@ -78,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({ onSelectTreatment }) => {
             onMouseLeave={() => setIsMegaMenuOpen(false)}
           >
             <button 
-              className="font-sans text-[13.5px] lg:text-[14px] font-medium text-on-surface hover:text-primary flex items-center gap-1 transition-colors duration-150 tracking-wide py-2 nav-link-hover whitespace-nowrap cursor-pointer"
+              className="font-sans text-[13px] lg:text-[13.5px] font-medium text-on-surface hover:text-primary flex items-center gap-1 transition-colors duration-150 tracking-wide py-2 nav-link-hover whitespace-nowrap cursor-pointer"
             >
               Treatments
               <ChevronDown size={14} className={`transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180' : ''}`} />
@@ -115,26 +142,37 @@ export const Header: React.FC<HeaderProps> = ({ onSelectTreatment }) => {
           </div>
  
           <button 
+            onClick={() => {
+              navigate('/dental-tourism');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="font-sans text-[13px] lg:text-[13.5px] font-medium text-tertiary hover:text-primary flex items-center gap-1.5 transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
+          >
+            <Plane size={13} className="text-tertiary" />
+            Dental Tourism
+          </button>
+
+          <button 
             onClick={() => handleScrollTo('gallery')}
-            className="font-sans text-[13.5px] lg:text-[14px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
+            className="font-sans text-[13px] lg:text-[13.5px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
           >
             Smile Gallery
           </button>
           <button 
             onClick={() => handleScrollTo('studios')}
-            className="font-sans text-[13.5px] lg:text-[14px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
+            className="font-sans text-[13px] lg:text-[13.5px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
           >
             Our Studios
           </button>
           <button 
             onClick={() => handleScrollTo('locations')}
-            className="font-sans text-[13.5px] lg:text-[14px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
+            className="font-sans text-[13px] lg:text-[13.5px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
           >
             Locations
           </button>
           <button 
             onClick={() => handleScrollTo('contact')}
-            className="font-sans text-[13.5px] lg:text-[14px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
+            className="font-sans text-[13px] lg:text-[13.5px] font-medium text-on-surface hover:text-primary transition-colors duration-150 tracking-wide nav-link-hover whitespace-nowrap cursor-pointer"
           >
             Contact
           </button>
@@ -191,6 +229,18 @@ export const Header: React.FC<HeaderProps> = ({ onSelectTreatment }) => {
               ))}
             </div>
           </div>
+
+          <button 
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              navigate('/dental-tourism');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="text-left font-sans text-lg font-medium text-tertiary flex items-center gap-2 uppercase tracking-wider"
+          >
+            <Plane size={18} className="text-tertiary" />
+            Dental Tourism
+          </button>
 
           <button 
             onClick={() => handleScrollTo('gallery')}

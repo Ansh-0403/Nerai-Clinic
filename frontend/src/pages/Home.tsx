@@ -374,6 +374,17 @@ export default function Home() {
                 </li>
                 <li>
                   <button 
+                    onClick={() => {
+                      navigate('/dental-tourism');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="font-sans text-xs text-tertiary hover:text-primary font-light flex items-center gap-1"
+                  >
+                    Dental Tourism (NRI Care)
+                  </button>
+                </li>
+                <li>
+                  <button 
                     onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
                     className="font-sans text-xs text-on-surface-variant hover:text-primary font-light"
                   >
