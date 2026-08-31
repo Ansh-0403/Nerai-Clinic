@@ -228,9 +228,6 @@ export default function Home() {
                           />
                         </div>
 
-                        <span className="font-sans text-[9px] font-bold text-primary tracking-[0.2em] uppercase bg-primary/5 px-3.5 py-1.5 rounded-full border border-primary/10 inline-block mb-3 shadow-sm">
-                          {treatment.category}
-                        </span>
                         <h3 className="font-serif text-xl md:text-2xl text-on-surface leading-tight mb-2">
                           {treatment.title}
                         </h3>

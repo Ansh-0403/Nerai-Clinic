@@ -46,9 +46,6 @@ export const TreatmentViewer: React.FC<TreatmentViewerProps> = ({ treatment, onC
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 pointer-events-none">
-            <span className="font-sans text-[10px] font-bold text-primary-fixed-dim tracking-widest uppercase block mb-1">
-              {treatment.category}
-            </span>
             <h3 className="font-serif text-2xl md:text-3xl text-surface-container-lowest leading-tight">
               {treatment.title}
             </h3>
